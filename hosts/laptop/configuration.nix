@@ -8,7 +8,7 @@
   imports =
     [ 
       ./hardware-configuration.nix
-      ../../modules/services/default.nix
+      ../../modules/default.nix
       inputs.home-manager.nixosModules.home-manager
       ];
   
@@ -76,8 +76,9 @@
   
   environment.systemPackages = with pkgs; [
   inputs.nixvim.packages.${system}.default
+  obsidian
+  wget
  ];
-
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
   ];
