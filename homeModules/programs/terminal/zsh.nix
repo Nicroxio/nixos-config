@@ -6,6 +6,10 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     history.size = 1000;
+    prezto = {
+      enable = true;
+      tmux.autoStartLocal = true;
+    };
     zplug = {
       enable = true;
       plugins = [
