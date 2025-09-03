@@ -9,6 +9,7 @@
     [ 
       ./hardware-configuration.nix
       ../../modules/services/default.nix
+      inputs.home-manager.nixosModules.home-manager
       ];
   
   ## Setup Bootloader
@@ -56,13 +57,18 @@
     description = "Ferdinand";
     extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.zsh;
+    ignoreShellProgramCheck = true;
   };
-
+  
+  home-manager.users.nic = {
+    # Import your home.nix or define your configuration here
+    # For example, with a separate home.nix file:
+    imports = [ (import ./home.nix) ];
+  };
 
  
 ## Install Global Packages ##
-  # Install ZSH
-  programs.zsh.enable = true;
+#  programs.zsh.enable = true;
   # Install firefox.
   programs.firefox.enable = true;
   # Allows things like Lazynvim to install its own packages

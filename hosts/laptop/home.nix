@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ../../homeModules/programs/development/default.nix
+    ../../homeModules/default.nix
   ];
   # target.genericLinux.enable = true; # ENABLE WHEN NOT NIXOS
   # Home Manager needs a bit of information about you and the paths it should
@@ -27,7 +27,7 @@
  };
 
  home.sessionVariables = {
-     EDITOR = "nano";
+     EDITOR = "nvim";
   };
 
   # Let Home Manager install and manage itself.
