@@ -17,8 +17,6 @@
   home.packages = [
     pkgs.keepassxc
     pkgs.wget
-    pkgs.alacritty
-    pkgs.tmux
 ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
