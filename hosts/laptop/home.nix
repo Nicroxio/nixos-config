@@ -15,9 +15,10 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
-#   pkgs.neovim
     pkgs.keepassxc
-    pkgs.sops
+    pkgs.wget
+    pkgs.alacritty
+    pkgs.tmux
 ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

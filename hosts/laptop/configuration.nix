@@ -67,15 +67,15 @@
   programs.firefox.enable = true;
   # Allows things like Lazynvim to install its own packages
   programs.nix-ld.enable = true;
-
+  
   environment.systemPackages = with pkgs; [
-  wget
-  alacritty
-  tmux
-  nerd-fonts.jetbrains-mono
- 
+  inputs.nixvim.packages.${system}.default
  ];
 
-  system.stateVersion = "25.05"; # Did you read the comment?
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+  ];
+
+  system.stateVersion = "25.05"; 
 
 }
