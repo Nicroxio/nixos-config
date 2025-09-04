@@ -81,6 +81,8 @@
   keepassxc
   vscode-fhs
   vesktop
+  calibre
+  spotify
  ];
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
