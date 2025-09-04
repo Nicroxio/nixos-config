@@ -80,6 +80,7 @@
   wget
   keepassxc
   vscode-fhs
+  vesktop
  ];
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono

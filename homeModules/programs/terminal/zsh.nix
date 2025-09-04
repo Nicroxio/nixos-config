@@ -27,7 +27,8 @@ config = lib.mkIf config.git.enable{
     shellAliases ={
       gp = "git push";
       ga = "git add -A";
-      update = "sudo nixos-rebuild switch --flake ~/nixos-config#";
+      update = "nix flake update --flake ~/nixos-config  && sudo nixos-rebuild switch --flake ~/nixos-config#";
+      rebuild = "sudo nixos-rebuild switch --flake ~/nixos-config#";
       collect = "sudo nix-collect-garbage -d";
     };
 
