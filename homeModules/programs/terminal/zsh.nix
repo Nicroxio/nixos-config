@@ -23,6 +23,15 @@ config = lib.mkIf config.git.enable{
     initContent = "source ~/.p10k.zsh";
 
 
+    ### Shell Alias ###
+    shellAliases ={
+      gp = "git push";
+      ga = "git add -A";
+      update = "sudo nixos-rebuild switch --flake ~/nixos-config#";
+      collect = "sudo nix-collect-garbage -d";
+    };
+
+
   };
   };
 

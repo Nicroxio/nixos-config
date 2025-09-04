@@ -78,6 +78,8 @@
   inputs.nixvim.packages.${system}.default
   obsidian
   wget
+  keepassxc
+  vscode-fhs
  ];
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
