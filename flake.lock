@@ -164,11 +164,11 @@
         "nixvim": "nixvim_2"
       },
       "locked": {
-        "lastModified": 1757006455,
-        "narHash": "sha256-Iy2HvMDpAsIA+2S7rQmQ1mWPOxX9TG2pSlDY4ErQ/eQ=",
+        "lastModified": 1757069814,
+        "narHash": "sha256-4HTkc/1GX2xpkRNqezvmDXg/aJ++pJjdmfvecHw8lXU=",
         "owner": "nicroxio",
         "repo": "nixos-neovim",
-        "rev": "cf849ce0d84d65fa39a4e581da75f83322b48cd7",
+        "rev": "e9dcd04fbb809088348fa18f215890d762d65033",
         "type": "github"
       },
       "original": {
