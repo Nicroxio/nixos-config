@@ -12,6 +12,7 @@
     ./pipewire.nix
     ./ssh.nix
     ./syncthing.nix
+    ./fprintd.nix
   ];
 
   ssh.enable = lib.mkDefault false;

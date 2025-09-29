@@ -9,29 +9,41 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixvim= {
+    nixvim = {
       url = "github:nicroxio/nixos-neovim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-snapd.url = "github:nix-community/nix-snapd";
+    nix-snapd.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager,  ... }@inputs: 
-  let
-  pkgs = nixpkgs.legacyPackages.x86_64-linux;
-  in
-  {
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      nix-snapd,
+      ...
+    }@inputs:
+    let
+      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+    in
+    {
 
-    nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
-        system = "x86_64-linux";
-	modules = [
-          ./hosts/laptop/configuration.nix
-          home-manager.nixosModules.home-manager
-          
-        ];
+      nixosConfigurations = {
+        nixos = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
+          system = "x86_64-linux";
+          modules = [
+            ./hosts/laptop/configuration.nix
+            home-manager.nixosModules.home-manager
+            nix-snapd.nixosModules.default
+            {
+              services.snap.enable = true;
+            }
+          ];
+        };
       };
     };
-  };
 }

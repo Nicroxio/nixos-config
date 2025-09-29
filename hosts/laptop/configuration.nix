@@ -2,16 +2,20 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
-  imports =
-    [ 
-      ./hardware-configuration.nix
-      ../../modules/default.nix
-      inputs.home-manager.nixosModules.home-manager
-      ];
-  
+  imports = [
+    ./hardware-configuration.nix
+    ../../modules/default.nix
+    inputs.home-manager.nixosModules.home-manager
+  ];
+
   ## Setup Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -22,9 +26,12 @@
 
   #Define Hostname
   networking.hostName = "nixos"; # Define your hostname.
-  
+
   # Enable Flakes
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -49,45 +56,48 @@
 
   #Enable Bluetooth
   hardware.bluetooth.enable = true;
- 
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.nic = {
     isNormalUser = true;
     description = "Ferdinand";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     shell = pkgs.zsh;
     ignoreShellProgramCheck = true;
   };
-  
+
   home-manager.users.nic = {
     # Import your home.nix or define your configuration here
     # For example, with a separate home.nix file:
     imports = [ (import ./home.nix) ];
   };
 
- 
-## Install Global Packages ##
-#  programs.zsh.enable = true;
+  ## Install Global Packages ##
+  #  programs.zsh.enable = true;
   # Install firefox.
   programs.firefox.enable = true;
   # Allows things like Lazynvim to install its own packages
   programs.nix-ld.enable = true;
-  
+
   environment.systemPackages = with pkgs; [
-  inputs.nixvim.packages.${system}.default
-  obsidian
-  wget
-  keepassxc
-  vscode-fhs
-  vesktop
-  calibre
-  spotify
- ];
+    inputs.nixvim.packages.${system}.default
+    obsidian
+    wget
+    keepassxc
+    vscode-fhs
+    vesktop
+    calibre
+    spotify
+    libreoffice-still
+    kicad
+  ];
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
   ];
 
-  system.stateVersion = "25.05"; 
+  system.stateVersion = "25.05";
 
 }
