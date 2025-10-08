@@ -7,8 +7,7 @@
 {
 
   imports = [
-    ./services/default.nix
-    ./network/default.nix
+    ./firewall.nix
   ];
 
 }
