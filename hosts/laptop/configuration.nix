@@ -25,7 +25,7 @@
   nixpkgs.config.allowUnfree = true;
 
   #Define Hostname
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "laptop"; # Define your hostname.
 
   # Enable Flakes
   nix.settings.experimental-features = [
