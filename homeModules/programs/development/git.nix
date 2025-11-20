@@ -12,8 +12,8 @@
   config = lib.mkIf config.git.enable {
     programs.git = {
       enable = true;
-      userName = "Nicroxio";
-      userEmail = "Ferdi@nicroxio.co.uk";
+      settings.user.name = "Nicroxio";
+      settings.user.email = "Ferdi@nicroxio.co.uk";
       lfs.enable = true;
     };
   };
