@@ -54,6 +54,8 @@
           specialArgs = { inherit inputs; };
           system = "x86_64-linux";
           modules = [
+            ./hosts/wsl/configuration.nix
+            home-manager.nixosModules.default
             nix-wsl.nixosModules.default
             {
               wsl.enable = true;
