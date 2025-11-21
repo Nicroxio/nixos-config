@@ -11,21 +11,16 @@
 
 {
   imports = [
-    ./hardware-configuration.nix
     ../../modules/default.nix
     inputs.home-manager.nixosModules.home-manager
+    inputs.nix-wsl.nixosModules.default
   ];
-
-  ## Setup Bootloader
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   #Allow Unfree Packages
   nixpkgs.config.allowUnfree = true;
 
   #Define Hostname
-  networking.hostName = "laptop"; # Define your hostname.
+  networking.hostName = "wsl"; # Define your hostname.
 
   # Enable Flakes
   nix.settings.experimental-features = [
@@ -53,10 +48,6 @@
     LC_TELEPHONE = "en_GB.UTF-8";
     LC_TIME = "en_GB.UTF-8";
   };
-
-  #Enable Bluetooth
-  hardware.bluetooth.enable = true;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.nic = {
     isNormalUser = true;
@@ -75,12 +66,17 @@
     imports = [ (import ./home.nix) ];
   };
 
-  ### Services ###
-  services.printing.enable = true;
-  fingerprint.enable = true;
+  ### WSL Specific ###
+  ssh.enable = false;
+  kde.enable = false;
+  audio.enable = false;
+  xserv.enable = false;
+  sync.enable = false;
+  fingerprint.enable = false;
+
+  ####################
 
   ## Install Global Packages ##
-  #  programs.zsh.enable = true;
   # Install firefox.
   programs.firefox.enable = true;
   # Allows things like Lazynvim to install its own packages
@@ -88,15 +84,7 @@
 
   environment.systemPackages = with pkgs; [
     inputs.nixvim.packages.${system}.default
-    obsidian
     wget
-    keepassxc
-    vscode-fhs
-    vesktop
-    calibre
-    spotify
-    libreoffice-still
-    kicad
   ];
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono

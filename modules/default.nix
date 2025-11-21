@@ -8,7 +8,6 @@
 
   imports = [
     ./services/default.nix
-    ./network/default.nix
   ];
 
 }

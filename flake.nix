@@ -16,6 +16,10 @@
 
     nix-snapd.url = "github:nix-community/nix-snapd";
     nix-snapd.inputs.nixpkgs.follows = "nixpkgs";
+
+    nix-wsl.url = "github:nix-community/NixOS-WSL";
+    nix-wsl.inputs.nixpkgs.follows = "nixpkgs";
+
   };
 
   outputs =
@@ -24,6 +28,7 @@
       nixpkgs,
       home-manager,
       nix-snapd,
+      nix-wsl,
       ...
     }@inputs:
     let
@@ -41,6 +46,17 @@
             nix-snapd.nixosModules.default
             {
               services.snap.enable = true;
+            }
+          ];
+        };
+
+        wsl = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
+          system = "x86_64-linux";
+          modules = [
+            nix-wsl.nixosModules.default
+            {
+              wsl.enable = true;
             }
           ];
         };
