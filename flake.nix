@@ -16,6 +16,9 @@
 
     nix-snapd.url = "github:nix-community/nix-snapd";
     nix-snapd.inputs.nixpkgs.follows = "nixpkgs";
+
+    nix-wsl.url = "github:nix-community/nixos-wsl";
+    nix-wsl.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -52,6 +55,10 @@
           modules = [
             ./hosts/wsl/configuration.nix
             home-manager.nixosModules.home-manager
+            nix-wsl.nixosModules.default
+            {
+              wsl.enable = true;
+            }
           ];
         };
       };
