@@ -13,7 +13,6 @@
   imports = [
     ../../modules/default.nix
     inputs.home-manager.nixosModules.home-manager
-    inputs.nix-wsl.nixosModules.default
   ];
 
   #Allow Unfree Packages
