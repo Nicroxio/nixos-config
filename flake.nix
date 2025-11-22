@@ -55,7 +55,7 @@
           system = "x86_64-linux";
           modules = [
             ./hosts/wsl/configuration.nix
-            home-manager.nixosModules.default
+            home-manager.nixosModules.home-manager
             nix-wsl.nixosModules.default
             {
               wsl.enable = true;
