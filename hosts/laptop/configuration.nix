@@ -97,6 +97,7 @@
     spotify
     libreoffice-still
     kicad
+    bambu-studio
   ];
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
