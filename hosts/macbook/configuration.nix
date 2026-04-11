@@ -97,15 +97,22 @@
     spotify
     libreoffice-still
     kicad
+    termius
+    proton-vpn
+    betaflight-configurator
+    expresslrs-configurator
   ];
+
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
   ];
 
+  services.tailscale.enable = true;
+
   boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
   boot.kernelModules = [ "wl" ];
   nixpkgs.config.permittedInsecurePackages = [
-    "broadcom-sta-6.30.223.271-59-6.18.4"
+    "broadcom-sta-6.30.223.271-59-6.19.11"
   ];
 
   system.stateVersion = "25.05";
