@@ -64,6 +64,7 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "dialout"
     ];
     shell = pkgs.zsh;
     ignoreShellProgramCheck = true;
@@ -95,12 +96,13 @@
     vesktop
     calibre
     spotify
-    libreoffice-still
+    onlyoffice-desktopeditors
     kicad
     termius
     proton-vpn
-    betaflight-configurator
     expresslrs-configurator
+    chromium
+    codex
   ];
 
   fonts.packages = with pkgs; [
@@ -112,8 +114,16 @@
   boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
   boot.kernelModules = [ "wl" ];
   nixpkgs.config.permittedInsecurePackages = [
-    "broadcom-sta-6.30.223.271-59-6.19.11"
+    "broadcom-sta-6.30.223.271-59-7.0.12"
   ];
+
+  services.udev.extraRules = ''
+    # DFU (Internal bootloader for STM32 and AT32 MCUs)
+    SUBSYSTEM=="usb", ATTRS{idVendor}=="2e3c", ATTRS{idProduct}=="df11", MODE="0664", GROUP="dialout"
+    SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE="0664", GROUP="dialout"
+  '';
+
+  services.flatpak.enable = true;
 
   system.stateVersion = "25.05";
 
