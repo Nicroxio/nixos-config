@@ -65,6 +65,8 @@
       "networkmanager"
       "wheel"
       "dialout"
+      "hermes"
+      "docker"
     ];
     shell = pkgs.zsh;
     ignoreShellProgramCheck = true;
@@ -84,12 +86,15 @@
   #  programs.zsh.enable = true;
   # Install firefox.
   programs.firefox.enable = true;
+
   # Allows things like Lazynvim to install its own packages
   programs.nix-ld.enable = true;
   programs.gnupg.agent.enable = true;
 
   age.secrets.hermes.file = ../../secrets/hermes.age;
-  age.identityPaths = [ "/home/nix/.ssh/id_ed25519" ];
+  age.identityPaths = [ "/home/nic/.ssh/id_ed25519" ];
+
+  virtualisation.docker.enable = true;
 
   environment.systemPackages = with pkgs; [
     inputs.nixvim.packages.${system}.default
@@ -110,7 +115,6 @@
     nodejs
     gnupg
     pinentry-curses
-
   ];
 
   fonts.packages = with pkgs; [
@@ -118,13 +122,6 @@
   ];
 
   services.tailscale.enable = true;
-
-  services.hermes-agent = {
-    enable = true;
-    addToSystemPackages = true;
-    environmentFiles = [ config.age.secrets.hermes.path ];
-
-  };
 
   boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
   boot.kernelModules = [ "wl" ];

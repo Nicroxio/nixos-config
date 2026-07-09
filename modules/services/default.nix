@@ -12,7 +12,6 @@
     ./ssh.nix # ssh
     ./syncthing.nix # sync
     ./fprintd.nix # fingerprint
-    ./hermes.nix # Hermes-agent - test
   ];
 
   ssh.enable = lib.mkDefault false;
@@ -21,6 +20,5 @@
   xserv.enable = lib.mkDefault true;
   sync.enable = lib.mkDefault true;
   fingerprint.enable = lib.mkDefault false;
-  hermes.enable = lib.mkDefault true;
 
 }
