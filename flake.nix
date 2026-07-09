@@ -17,8 +17,11 @@
     nix-snapd.url = "github:nix-community/nix-snapd";
     nix-snapd.inputs.nixpkgs.follows = "nixpkgs";
 
-    nix-wsl.url = "github:nix-community/nixos-wsl";
-    nix-wsl.inputs.nixpkgs.follows = "nixpkgs";
+    agenix.url = "github:ryantm/agenix";
+    agenix.inputs.nixpkgs.follows = "nixpkgs";
+
+    hermes-agent.url = "github:NousResearch/hermes-agent";
+    hermes-agent.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -27,7 +30,8 @@
       nixpkgs,
       home-manager,
       nix-snapd,
-      nix-wsl,
+      agenix,
+      hermes-agent,
       ...
     }@inputs:
     let
@@ -55,6 +59,8 @@
           modules = [
             ./hosts/macbook/configuration.nix
             home-manager.nixosModules.home-manager
+            hermes-agent.nixosModules.default
+            agenix.nixosModules.default
           ];
         };
       };

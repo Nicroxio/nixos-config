@@ -19,7 +19,7 @@
   ## Setup Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_6_12;
 
   #Allow Unfree Packages
   nixpkgs.config.allowUnfree = true;
@@ -86,9 +86,14 @@
   programs.firefox.enable = true;
   # Allows things like Lazynvim to install its own packages
   programs.nix-ld.enable = true;
+  programs.gnupg.agent.enable = true;
+
+  age.secrets.hermes.file = ../../secrets/hermes.age;
+  age.identityPaths = [ "/home/nix/.ssh/id_ed25519" ];
 
   environment.systemPackages = with pkgs; [
     inputs.nixvim.packages.${system}.default
+    inputs.agenix.packages.${system}.default
     obsidian
     wget
     keepassxc
@@ -100,9 +105,12 @@
     kicad
     termius
     proton-vpn
-    expresslrs-configurator
     chromium
-    codex
+    pi-coding-agent
+    nodejs
+    gnupg
+    pinentry-curses
+
   ];
 
   fonts.packages = with pkgs; [
@@ -111,10 +119,18 @@
 
   services.tailscale.enable = true;
 
+  services.hermes-agent = {
+    enable = true;
+    addToSystemPackages = true;
+    environmentFiles = [ config.age.secrets.hermes.path ];
+
+  };
+
   boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
   boot.kernelModules = [ "wl" ];
   nixpkgs.config.permittedInsecurePackages = [
-    "broadcom-sta-6.30.223.271-59-7.0.12"
+    "broadcom-sta-6.30.223.271-59-6.12.95"
+
   ];
 
   services.udev.extraRules = ''
@@ -124,7 +140,6 @@
   '';
 
   services.flatpak.enable = true;
-
   system.stateVersion = "25.05";
 
 }
