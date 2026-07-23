@@ -65,7 +65,6 @@
       "networkmanager"
       "wheel"
       "dialout"
-      "hermes"
       "docker"
     ];
     shell = pkgs.zsh;
@@ -90,9 +89,6 @@
   # Allows things like Lazynvim to install its own packages
   programs.nix-ld.enable = true;
   programs.gnupg.agent.enable = true;
-
-  age.secrets.hermes.file = ../../secrets/hermes.age;
-  age.identityPaths = [ "/home/nic/.ssh/id_ed25519" ];
 
   virtualisation.docker.enable = true;
 
